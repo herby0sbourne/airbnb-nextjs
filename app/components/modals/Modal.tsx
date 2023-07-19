@@ -1,7 +1,7 @@
-'use client';
-import { useCallback, useEffect, useState } from 'react';
-import { IoMdClose } from 'react-icons/io';
-import Button from '../Button';
+"use client";
+import { useCallback, useEffect, useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import Button from "../Button";
 
 interface ModalProps {
   title: string;
@@ -70,8 +70,8 @@ const Modal = ({
           {/*  CONTENT */}
           <div
             className={`transition duration-300 h-full 
-            ${showModal ? 'translate-y-0' : 'translate-y-full'} 
-            ${showModal ? 'opacity-100' : 'opacity-0'}`}
+            ${showModal ? "translate-y-0" : "translate-y-full"} 
+            ${showModal ? "opacity-100" : "opacity-0"}`}
           >
             <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               {/*  Header */}
@@ -103,6 +103,7 @@ const Modal = ({
                     onClick={handleSubmit}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
