@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { User } from "@prisma/client";
-import { signOut } from "next-auth/react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { useState } from 'react';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
+import { AiOutlineMenu } from 'react-icons/ai';
 
-import Avatar from "../Avatar";
-import MenuItem from "./MenuItem";
+import Avatar from '../Avatar';
+import MenuItem from './MenuItem';
 
-import useLoginModal from "@/app/hooks/useLoginModal";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from '@/app/hooks/useLoginModal';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 
 interface UserMenuProps {
   currentUser?: User | null;
@@ -39,7 +39,7 @@ function UserMenu({ currentUser }: UserMenuProps) {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar imgUrl={currentUser?.image} />
           </div>
         </div>
       </div>
