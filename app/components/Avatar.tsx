@@ -1,10 +1,20 @@
-'use client'
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-const Avatar = () => {
-  return (
-      <Image src='/images/placeholder.jpeg' alt='avatar' className='rounded-full' width={30} height={30}  />
-  )
+interface AvatarProp {
+  imgUrl?: string | null;
 }
-export default Avatar
+
+const Avatar = ({ imgUrl }: AvatarProp) => {
+  return (
+    <Image
+      src={`${imgUrl || '/images/placeholder.jpeg'}`}
+      alt="avatar"
+      className="rounded-full"
+      width={30}
+      height={30}
+    />
+  );
+};
+export default Avatar;
