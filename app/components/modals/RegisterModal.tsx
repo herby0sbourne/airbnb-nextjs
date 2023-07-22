@@ -1,16 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import axios from "axios";
-import { AiFillGithub } from "react-icons/ai";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
+
 import Modal from "./Modal";
+import Button from "../Button";
 import Heading from "../Heading";
 import FormInput from "../FromInputs/FormInput";
-import { toast } from "react-hot-toast";
-import Button from "@/app/components/Button";
+
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -19,13 +22,13 @@ const RegisterModal = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
       email: "",
-      password: "",
-    },
+      password: ""
+    }
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -79,17 +82,12 @@ const RegisterModal = () => {
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
-      <Button
-        outline
-        label="Continue with Google"
-        icon={FcGoogle}
-        onClick={() => {}}
-      />
+      <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => {}} />
       <Button
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="flex items-center gap-2 justify-center">
@@ -98,8 +96,7 @@ const RegisterModal = () => {
           </div>
           <div
             onClick={registerModal.onClose}
-            className="text-neutral-800 cursor-pointer hover:underline"
-          >
+            className="text-neutral-800 cursor-pointer hover:underline">
             <div>Log in</div>
           </div>
         </div>
