@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
@@ -51,6 +51,11 @@ const LoginModal = () => {
     });
   };
 
+  const openRegisterModal = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login to your account" center />
@@ -96,7 +101,7 @@ const LoginModal = () => {
             <div>Don&apos;t have an account?</div>
           </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={openRegisterModal}
             className="text-neutral-800 cursor-pointer hover:underline">
             <div>Sign Up</div>
           </div>
