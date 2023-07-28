@@ -26,7 +26,7 @@ const Modal = ({
   onSubmit,
   body,
   title,
-  disabled,
+  disabled
 }: ModalProps) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -57,6 +57,7 @@ const Modal = ({
     if (disabled || !secondaryAction) {
       return;
     }
+    secondaryAction();
   }, [disabled, secondaryAction]);
 
   if (!isOpen) {
@@ -71,15 +72,13 @@ const Modal = ({
           <div
             className={`transition duration-300 h-full 
             ${showModal ? "translate-y-0" : "translate-y-full"} 
-            ${showModal ? "opacity-100" : "opacity-0"}`}
-          >
+            ${showModal ? "opacity-100" : "opacity-0"}`}>
             <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               {/*  Header */}
               <div className="flex items-center p-6 rounded-t justify-center border-b-[1px]">
                 <button
                   onClick={handleClose}
-                  className="p-1 border-0 hover:opacity-70 transition absolute left-9"
-                >
+                  className="p-1 border-0 hover:opacity-70 transition absolute left-9">
                   <IoMdClose size={18} />
                 </button>
                 <div className="text-lg font-semibold">{title}</div>
@@ -97,11 +96,7 @@ const Modal = ({
                       onClick={handleSecondaryAction}
                     />
                   )}
-                  <Button
-                    label={actionLabel}
-                    disabled={disabled}
-                    onClick={handleSubmit}
-                  />
+                  <Button label={actionLabel} disabled={disabled} onClick={handleSubmit} />
                 </div>
                 {footer}
               </div>
