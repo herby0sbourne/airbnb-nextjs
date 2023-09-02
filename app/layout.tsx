@@ -14,9 +14,7 @@ import "./globals.css";
 const nunito = Nunito({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // const currentUser = await getCurrentUser();
-
-  const currentUser = {
+  const currentUserData = {
     id: "vsvsvs",
     name: null,
     email: null,
@@ -28,6 +26,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     favoriteIds: []
   };
 
+  const currentUser = process.env.NEXT_PUBLIC_DEVELOPMENT
+    ? currentUserData
+    : await getCurrentUser();
+
   return (
     <html lang="en">
       <body className={nunito.className}>
@@ -38,7 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <RegisterModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
-        {children}
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );
