@@ -11,7 +11,7 @@ interface IParams {
  * @returns {Promise<object|null>} The listing object if found, null otherwise.
  * @throws {Error} If there is an error during the database operation.
  */
- 
+
 export default async function getListingById(listingId?: string) {
   try {
     const listing = await prisma.listing.findUnique({
