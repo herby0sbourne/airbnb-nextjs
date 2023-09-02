@@ -6,6 +6,24 @@ interface IParams {
   authorId?: string;
 }
 
+/**
+ * This function retrieves reservations from the database based on the provided parameters.
+ *
+ * @param params - An object that may contain the following properties:
+ *   - listingId: The ID of the listing for which reservations are to be retrieved.
+ *   - userId: The ID of the user whose reservations are to be retrieved.
+ *   - authorId: The ID of the author whose listings' reservations are to be retrieved.
+ *
+ * If multiple parameters are provided, they will be used in conjunction to filter the reservations.
+ *
+ * The function returns an array of reservations, each including its associated listing.
+ * The reservations are ordered by their creation date in descending order.
+ *
+ * @returns {Promise<Array<Object>>} A Promise that resolves to an array of reservations.
+ *
+ *@throws {Error}  Will throw an error if the database query fails.
+ */
+
 export default async function getReservations(params: IParams) {
   try {
     const { userId, listingId, authorId } = params;
@@ -13,7 +31,7 @@ export default async function getReservations(params: IParams) {
     const query: any = {};
 
     if (listingId) {
-      query.listing = listingId;
+      query.listingId = listingId;
     }
 
     if (userId) {
