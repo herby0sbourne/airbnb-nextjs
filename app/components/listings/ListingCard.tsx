@@ -17,7 +17,7 @@ interface ListingCardProps {
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
-  actionId: string;
+  actionId?: string;
   currentUser?: User | null;
 }
 
@@ -42,7 +42,9 @@ const ListingCard = ({
         return;
       }
 
-      onAction?.(actionId);
+      if (actionId) {
+        onAction?.(actionId);
+      }
     },
     [onAction, actionId, disabled]
   );
