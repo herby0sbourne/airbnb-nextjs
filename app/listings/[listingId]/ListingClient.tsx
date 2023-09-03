@@ -69,7 +69,7 @@ const ListingClient = ({ listing, currentUser, reservations = [] }: ListingClien
         //redirect to trips later
         router.refresh();
       })
-      .catch((error: any) => {
+      .catch(() => {
         toast.error("Something went Wrong!");
       })
       .finally(() => {
