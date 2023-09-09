@@ -92,7 +92,7 @@ const ListingCard = ({
           <div>{!reservation && <div className="font-light">night</div>}</div>
         </div>
         {onAction && actionLabel && (
-          <Button disabled small label={actionLabel} onClick={handleCancel} />
+          <Button disabled={disabled} small label={actionLabel} onClick={handleCancel} />
         )}
       </div>
     </div>
