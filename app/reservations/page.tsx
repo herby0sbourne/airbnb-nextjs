@@ -11,12 +11,12 @@ const ReservationPage = async () => {
   if (!currentUser) {
     return (
       <ClientOnly>
-        <EmptyState title="Unauthorized" subtitle="please login" />
+        <EmptyState title="Unauthorized" subtitle="Please login" />
       </ClientOnly>
     );
   }
 
-  // getReservation with authorId return all reservations made form your listing
+  // getReservation with authorId return all reservations made for your listing
   const reservations = await getReservations({ authorId: currentUser.id });
 
   if (reservations.length === 0) {
