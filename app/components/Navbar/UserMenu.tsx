@@ -60,12 +60,12 @@ function UserMenu({ currentUser }: UserMenuProps) {
             {currentUser ? (
               <>
                 <MenuItem label="My trips" handleClick={() => router.push("/trips")} />
-                <MenuItem label="My favorite" handleClick={() => {}} />
+                <MenuItem label="My favorite" handleClick={() => router.push("/favorites")} />
                 <MenuItem
                   label="My reservations"
                   handleClick={() => router.push("/reservations")}
                 />
-                <MenuItem label="My properties" handleClick={() => {}} />
+                <MenuItem label="My properties" handleClick={() => router.push("/properties")} />
                 <MenuItem label="Airbnb my home" handleClick={rentModal.onOpen} />
                 <hr />
                 <MenuItem label="Logout" handleClick={() => signOut()} />
