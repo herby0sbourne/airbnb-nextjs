@@ -4,6 +4,12 @@ import EmptyState from "../components/EmptyState";
 
 import getCurrentUser from "../actions/getCurrentUser";
 import getReservations from "../actions/getReservations";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Reservations",
+  description: "All your reservations in once place"
+};
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
