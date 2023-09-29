@@ -5,9 +5,19 @@ import EmptyState from "@/app/components/EmptyState";
 import getListingById from "@/app/actions/getListingById";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
+import { Metadata } from "next";
 
 interface IParams {
   listingId?: string;
+}
+
+export async function generateMetadata({ params }: { params: IParams }): Promise<Metadata> {
+  const listing = await getListingById(params.listingId);
+
+  return {
+    title: listing?.title || "Listing Property",
+    description: listing?.description || "Best property in the area"
+  };
 }
 
 const ListingPage = async ({ params }: { params: IParams }) => {
