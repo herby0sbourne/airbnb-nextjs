@@ -10,6 +10,7 @@ import Button from "../Button";
 import HeartButton from "../HeartButton";
 
 import useCountries from "@/app/hooks/useCountry";
+import formatPrice from "@/app/utils/formatPrice";
 
 interface ListingCardProps {
   data: Listing;
@@ -88,7 +89,7 @@ const ListingCard = ({
         </div>
         <div className="font-light text-neutral-500">{reservationDate || data.category}</div>
         <div className="flex items-center gap-1">
-          <div className="font-semibold">$ {price}</div>
+          <div className="font-semibold">{formatPrice(price)}</div>
           <div>{!reservation && <div className="font-light">night</div>}</div>
         </div>
         {onAction && actionLabel && (
