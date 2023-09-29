@@ -1,4 +1,4 @@
-export const price = (cost: string | number) => {
+const formatPrice = (cost: string | number) => {
   // if (!isNaN(Number(cost)) && cost !== null && cost !== '') {
   //   return 'not a number'
   // }
@@ -13,3 +13,5 @@ export const price = (cost: string | number) => {
 
   return formattedNumber;
 };
+
+export default formatPrice;
