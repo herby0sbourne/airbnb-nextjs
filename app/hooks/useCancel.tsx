@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-const UseCancelReservation = () => {
+const useCancel = () => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
@@ -28,4 +28,4 @@ const UseCancelReservation = () => {
     onCancel
   };
 };
-export default UseCancelReservation;
+export default useCancel;
