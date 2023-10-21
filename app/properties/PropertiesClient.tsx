@@ -30,7 +30,7 @@ const PropertiesClient = ({ listings, currentUser }: PropertiesProps) => {
           router.refresh();
         })
         .catch((error) => {
-          toast.error(error?.response?.data?.error);
+          toast.error(error?.response?.data?.error || "Something went wrong");
         })
         .finally(() => {
           setDeletingId("");
