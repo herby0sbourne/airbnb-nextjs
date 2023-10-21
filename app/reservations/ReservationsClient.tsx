@@ -1,9 +1,5 @@
 "use client";
 
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
 import { Reservation, User, Listing } from "@prisma/client";
 
 import Grid from "../components/Grid";
@@ -19,27 +15,7 @@ interface ReservationsProps {
 
 const ReservationsClient = ({ reservations, currentUser }: ReservationsProps) => {
   const { deletingId, onCancel } = useCancel();
-  // const router = useRouter();
-  // const [deletingId, setDeletingId] = useState("");
-  //
-  // const onCancel = useCallback(
-  //   (id: string) => {
-  //     setDeletingId(id);
-  //     axios
-  //       .delete(`/api/reservations/${id}`)
-  //       .then(() => {
-  //         toast.success("Reservation Canceled");
-  //         router.refresh();
-  //       })
-  //       .catch(() => {
-  //         toast.error("Something went wrong");
-  //       })
-  //       .finally(() => {
-  //         setDeletingId("");
-  //       });
-  //   },
-  //   [router]
-  // );
+
   return (
     <Container>
       <Heading title={"Reservations"} subtitle={"Bookings on your Properties"} />
