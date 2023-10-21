@@ -9,6 +9,7 @@ import { Listing, Reservation, User } from "@prisma/client";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import ListingCard from "../components/listings/ListingCard";
+import useCancel from "@/app/hooks/useCancel";
 
 interface TripsProps {
   reservations: (Reservation & { listing: Listing })[];
@@ -16,27 +17,7 @@ interface TripsProps {
 }
 
 const TripsClient = ({ reservations, currentUser }: TripsProps) => {
-  const router = useRouter();
-  const [deletingId, setDeletingId] = useState("");
-
-  const onCancel = useCallback(
-    (id: string) => {
-      setDeletingId(id);
-      axios
-        .delete(`/api/reservations/${id}`)
-        .then(() => {
-          toast.success("Reservation Canceled");
-          router.refresh();
-        })
-        .catch((error) => {
-          toast.error(error?.response?.data?.error);
-        })
-        .finally(() => {
-          setDeletingId("");
-        });
-    },
-    [router]
-  );
+  const { deletingId, onCancel } = useCancel();
 
   return (
     <Container>
@@ -51,7 +32,7 @@ const TripsClient = ({ reservations, currentUser }: TripsProps) => {
               actionId={reservation.id}
               onAction={onCancel}
               disabled={deletingId === reservation.id}
-              actionLabel="Cancel Reservation"
+              actionLabel="Cancel Trip Reservation"
               currentUser={currentUser}
             />
           );
