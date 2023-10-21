@@ -10,6 +10,7 @@ import Grid from "../components/Grid";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import ListingCard from "../components/listings/ListingCard";
+import useCancel from "@/app/hooks/useCancel";
 
 interface ReservationsProps {
   reservations: (Reservation & { listing: Listing })[];
@@ -17,27 +18,28 @@ interface ReservationsProps {
 }
 
 const ReservationsClient = ({ reservations, currentUser }: ReservationsProps) => {
-  const router = useRouter();
-  const [deletingId, setDeletingId] = useState("");
-
-  const onCancel = useCallback(
-    (id: string) => {
-      setDeletingId(id);
-      axios
-        .delete(`/api/reservations/${id}`)
-        .then(() => {
-          toast.success("Reservation Canceled");
-          router.refresh();
-        })
-        .catch(() => {
-          toast.error("Something went wrong");
-        })
-        .finally(() => {
-          setDeletingId("");
-        });
-    },
-    [router]
-  );
+  const { deletingId, onCancel } = useCancel();
+  // const router = useRouter();
+  // const [deletingId, setDeletingId] = useState("");
+  //
+  // const onCancel = useCallback(
+  //   (id: string) => {
+  //     setDeletingId(id);
+  //     axios
+  //       .delete(`/api/reservations/${id}`)
+  //       .then(() => {
+  //         toast.success("Reservation Canceled");
+  //         router.refresh();
+  //       })
+  //       .catch(() => {
+  //         toast.error("Something went wrong");
+  //       })
+  //       .finally(() => {
+  //         setDeletingId("");
+  //       });
+  //   },
+  //   [router]
+  // );
   return (
     <Container>
       <Heading title={"Reservations"} subtitle={"Bookings on your Properties"} />
@@ -51,7 +53,7 @@ const ReservationsClient = ({ reservations, currentUser }: ReservationsProps) =>
               actionId={reservation.id}
               onAction={onCancel}
               disabled={deletingId === reservation.id}
-              actionLabel={"Cancel guest Reservation"}
+              actionLabel={"Cancel Guest Reservation"}
               currentUser={currentUser}
             />
           );
