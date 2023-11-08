@@ -68,7 +68,7 @@ const SearchModal = () => {
       locationValue: location?.value,
       guestCount,
       roomsCount,
-      bathroomCount
+      bathRoomCount: bathroomCount
       // startDate: dateRange.startDate ? formatISO(dateRange.startDate) : undefined,
       // endDate: dateRange.endDate ? formatISO(dateRange.endDate) : undefined
     };
