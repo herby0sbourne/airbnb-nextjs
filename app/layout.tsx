@@ -4,37 +4,28 @@ import Navbar from "./components/Navbar/Navbar";
 import ClientOnly from "./components/ClientOnly";
 import RentModal from "./components/modals/RentModal";
 import LoginModal from "./components/modals/LoginModal";
+import SearchModal from "./components/modals/SearchModal";
 import RegisterModal from "./components/modals/RegisterModal";
 
 import getCurrentUser from "./actions/getCurrentUser";
 import ToasterProvider from "./providers/ToasterProvider";
+
+import { currentUserData } from "@/data/seedData";
 
 import "./globals.css";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const currentUserData = {
-    id: "vsvsvs",
-    name: null,
-    email: null,
-    emailVerified: null,
-    image: null,
-    hashedPassword: null,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    favoriteIds: []
-  };
-
-  const currentUser = process.env.NEXT_PUBLIC_DEVELOPMENT
-    ? currentUserData
-    : await getCurrentUser();
+  const currentUser =
+    process.env.NEXT_PUBLIC_NODE_ENV !== "production" ? currentUserData : await getCurrentUser();
 
   return (
     <html lang="en">
       <body className={nunito.className}>
         <ClientOnly>
           <ToasterProvider />
+          <SearchModal />
           <RentModal />
           <LoginModal />
           <RegisterModal />
